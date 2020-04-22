@@ -2,7 +2,6 @@ import scrapy
 from new.items import flipkart
 
 
-
 class FlipkartProductSpider(scrapy.Spider):
     name = "flipkart"
     allowed_domains = ["flipkart.com"]
