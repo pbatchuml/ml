@@ -12,15 +12,4 @@ Serving a simple machine learning model as a webservice using [flask](http://fla
         0.0.0.0:80/predict \
         -H 'Content-Type: application/json' \
         -d '[0.00632,18.0,2.31,0,0.538,6.575,65.2,4.0900,1,296.0,15.3,396.90,4.98]'
-     ```
- 2. Run ```docker build -t app-iris .``` to  build the docker image using ```Dockerfile```. (Pay attention to the period in the docker build command)
- 3. Run ```docker run -p 80:80 app-iris``` to run the docker container that got generated using the `app-iris` docker image. (This assumes that the port in app.py is set to 80)
- 4. Use the below command in terminal to query the flask server to get a reply ```2``` for the model file provided in this repo:
-    ```
-        curl -X POST \
-        0.0.0.0:80/predict \
-        -H 'Content-Type: application/json' \
-        -d '[0.00632,18.0,2.31,0,0.538,6.575,65.2,4.0900,1,296.0,15.3,396.90,4.98]'
-    ```
-
-
+  
