@@ -1,0 +1,6 @@
+Flask==1.0.2
+numpy==1.16.1
+scikit-learn==0.20.2
+pandas==1.0.3
+seaborn==0.10.0
+pickle==1.0.2
