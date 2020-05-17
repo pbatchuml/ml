@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>CardioVascular Disease Prediction</title>
+    <link rel="icon" type="image/ico" href="{{ url_for('static', filename='images/hospital-logo.png') }}" />
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="background" id="background">
+        <div class="container">
+            <div class="center">
+                <img class="prelogo" src="{{ url_for('static', filename='images/hospital-logo.png') }}">
+            </div>
+            <br><br>
+            <div class="center row">
+                <h4>
+                    <span data-text="L">L</span>
+                    <span data-text="O">O</span>
+                    <span data-text="A">A</span>
+                    <span data-text="D">D</span>
+                    <span data-text="I">I</span>
+                    <span data-text="N">N</span>
+                    <span data-text="G">G</span>
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="main-div" id="main-div">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+            <div class="container">
+                <a class="navbar-brand d-lg-none" href="#"><img
+                        src="{{ url_for('static', filename='images/hos.png') }}" class="logo"></a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+                    aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarToggle">
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                    </ul>
+
+                    <a class="navbar-brand d-none d-lg-block" href="#"><img
+                            src="{{ url_for('static', filename='images/hos.png') }}"></a>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <header>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+               
+            </div>
+            <a id="scroll" class="ca3-scroll-down-link ca3-scroll-down-arrow" data-ca3_iconfont="ETmodules"
+                data-ca3_icon=""></a>
+        </header>
+        <section class="py-5">
+            <div id="main" class="container">
+                <form class="well form-horizontal" action="{{ url_for('predict')}}" method="post" id="prediction_form">
+                    <fieldset>
+                        <legend>
+                            <center>
+                                <h2><b>Cardiovascular Disease Prediction</b></h2>
+                            </center>
+                        </legend><br>
+
+                        <div class="content center form-group">
+                            <label class="col-md-2 control-label">Age<span style="color: red;">*</span>:</label>
+							<input type="int" id="age" name="age"><br>                            
+                        </div>
+
+                        <div class="content center form-group">
+                            <label class="col-md-2 control-label">Height<span style="color: red;">*</span>:</label>
+							<input type="int" id="height	" name="height"><br>                            
+                        </div>
+
+						<div class="content center form-group">
+                            <label class="col-md-2 control-label">Weight<span style="color: red;">*</span>:</label>
+							<input type="int" id="weight" name="weight"><br>                            
+                        </div>
+						
+                        <div class="content center form-group">
+                            <label class="col-md-2 control-label">Gender<span style="color: red;">*</span>:</label>
+							<div class="col-md-4 selectContainer">
+                                <div class="content input-group">
+                                    <select name="gender" class="form-control selectpicker" data-live-search="true"
+                                        required>
+                                        <option data-tokens="" class="content" value="">Select Gender</option>
+                                        <option data-tokens="Male" class="content" value="1">
+                                            Male</option>
+                                        <option data-tokens="Femail" class="content" value="2">
+                                            Female</option>                                      
+                                    </select>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="content center form-group">
+                            <label class="col-md-2 control-label">Systolic blood pressure<span style="color: red;">*</span>:</label>
+							<input type="int" id="ap_hi" name="ap_hi"><br>                            
+                        </div>
+							
+						<div class="content center form-group">
+                            <label class="col-md-2 control-label">Diastolic blood pressure<span style="color: red;">*</span>:</label>
+							<input type="int" id="ap_lo" name="ap_lo"><br>                           
+                        </div>						
+						
+						<div class="content center form-group">
+                            <label class="col-md-2 control-label">Cholesterol<span style="color: red;">*</span>:</label>
+							<div class="col-md-4 selectContainer">
+                                <div class="content input-group">
+                                    <select name="cholesterol" class="form-control selectpicker" data-live-search="true"
+                                        required>
+                                        <option data-tokens="" class="content" value="">Select Type</option>
+                                        <option data-tokens="normal" class="content" value="1">
+                                            Normal</option>
+                                        <option data-tokens="above normal" class="content" value="2">
+                                            Above Normal</option>
+										<option data-tokens="well above normal" class="content" value="3">
+                                           Well Above Normal</option>                                    											
+                                    </select>
+                                </div>
+                            </div>
+						</div>	
+						
+						<div class="content center form-group">
+                            <label class="col-md-2 control-label">Glucose <span style="color: red;">*</span>:</label>
+							<div class="col-md-4 selectContainer">
+                                <div class="content input-group">
+                                    <select name="gluc" class="form-control selectpicker" data-live-search="true"
+                                        required>
+                                        <option data-tokens="" class="content" value="">Select Type</option>
+                                        <option data-tokens="normal" class="content" value="1">
+                                            Normal</option>
+                                        <option data-tokens="above normal" class="content" value="2">
+                                            Above Normal</option>
+										<option data-tokens="well above normal" class="content" value="3">
+                                           Well Above Normal</option>                                    											
+                                    </select>
+                                </div>
+                            </div>
+						</div>
+						
+                        <div class="content center form-group">
+                            <label class="col-md-2 control-label">Smoking <span style="color: red;">*</span>:</label>
+							<input type="radio" id="yes" name="smoke" value="0">
+							<label for="yes">Yes</label>
+							<input type="radio" id="no" name="smoke" value="1">
+							<label for="no">No</label><br>                            
+                        </div>
+
+                        <div class="content center form-group">
+                            <label class="col-md-2 control-label">Alcohol intake<span style="color: red;">*</span>:</label>
+							<input type="radio" id="yes" name="alco" value="0">
+							<label for="yes">Yes</label>
+							<input type="radio" id="no" name="alco" value="1">
+							<label for="no">No</label><br>                            
+                        </div>
+						
+						<div class="content center form-group">
+                            <label class="col-md-2 control-label">Physical activity<span style="color: red;">*</span>:</label>
+							<input type="radio" id="yes" name="active" value="0">
+							<label for="yes">Yes</label>
+							<input type="radio" id="no" name="active" value="1">
+							<label for="no">No</label><br> 
+						</div>
+						
+						<div class="content center">
+                            <span class="col-md-6" style="color: red;">*All Required</span>
+                        </div>
+
+                    </fieldset>
+                    <div class="content center form-group">
+                        <div class="submit col-md-2"><br>
+                            <button type="submit" class="content btn btn-lg btn-warning">SUBMIT</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <article>
+            <div class="content center">
+                <h3>{{ prediction_text }}</h3>
+            </div>
+        </article>
+        <br>
+        <footer>
+            <div class="container-fluid bg-primary py-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="row py-0">
+                                <img class="foot" src="{{ url_for('static', filename='images/hospital-logo.png') }}">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="d-inline-block">
+                                <div class="bg-circle-outline d-inline-block" style="background-color:#3b5998">
+                                    <a href="#"><i class="fa fa-2x fa-fw fa-facebook text-white"></i>
+                                    </a>
+                                </div>
+                                <div class="bg-circle-outline d-inline-block" style="background-color:#4099FF">
+                                    <a href="#">
+                                        <i class="fa fa-2x fa-fw fa-twitter text-white"></i></a>
+                                </div>
+
+                                <div class="bg-circle-outline d-inline-block" style="background-color:#0077B5">
+                                    <a href="#">
+                                        <i class="fa fa-2x fa-fw fa-linkedin text-white"></i></a>
+                                </div>
+                                <div class="bg-circle-outline d-inline-block" style="background-color:#fe4164">
+                                    <a href="#">
+                                        <i class="fa fa-2x fa-fw fa-instagram text-white"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+    </div>
+</body>
+<a id="button"></a>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</html>
